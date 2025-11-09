@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lessons • Freedom Baseball</title>
+  <meta name="description" content="Private baseball lessons that build fundamentals, confidence, and a love for the game.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Freedom Baseball logo" />
+      <span>Freedom Baseball</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="menu" role="navigation">
+      <a href="index.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="trainers.html">Our Trainers</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero slim" style="--bg:url('assets/lessons-bg.jpg');">
+  <div class="overlay"></div>
+  <div class="container hero-content center">
+    <img class="hero-mark small" src="assets/logo.png" alt="Freedom Baseball logo">
+    <h1>Private Lessons</h1>
+  </div>
+</section>
+
+<section class="container card-grid">
+  <article class="card">
+    <img src="assets/hitting.jpg" alt="Hitting">
+    <h3>Hitting Lessons</h3>
+    <p>Barrel control, timing, pitch recognition.</p>
+    <a class="btn btn-small view-details-btn" href="#" data-lesson="hitting">View details</a>
+  </article>
+  <article class="card">
+    <img src="assets/fielding.jpg" alt="Fielding">
+    <h3>Fielding Lessons</h3>
+    <p>Footwork, hands, transfer speed.</p>
+    <a class="btn btn-small view-details-btn" href="#" data-lesson="fielding">View details</a>
+  </article>
+  <article class="card">
+    <img src="assets/outfield.jpg" alt="Outfield">
+    <h3>Outfielder Lessons</h3>
+    <p>Reads, routes, and throws.</p>
+    <a class="btn btn-small view-details-btn" href="#" data-lesson="outfield">View details</a>
+  </article>
+  <article class="card card-centered">
+    <img src="assets/pitching.jpg" alt="Pitching">
+    <h3>Pitching Lessons</h3>
+    <p>Delivery, arm care, command.</p>
+    <a class="btn btn-small view-details-btn" href="#" data-lesson="pitching">View details</a>
+  </article>
+  <article class="card card-centered">
+    <img src="assets/catching.jpg" alt="Catching">
+    <h3>Catching Lessons</h3>
+    <p>Receiving, blocking, game calling.</p>
+    <a class="btn btn-small view-details-btn" href="#" data-lesson="catching">View details</a>
+  </article>
+</section>
+
+<!-- Modal Structure -->
+<div id="lessonModal" class="modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close modal">&times;</button>
+    <div class="container lesson-detail">
+      <div class="detail-media">
+        <img id="modalImage" src="" alt="">
+      </div>
+      <div class="detail-copy">
+        <h2 id="modalTitle"></h2>
+        <p class="price" id="modalPrice"></p>
+        <h4 id="modalSubtitle"></h4>
+        <ul id="modalList"></ul>
+        <a class="btn" href="#request">Schedule Your Lesson</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="request" class="container form-wrap">
+  <h2>Lesson Request Form</h2>
+  <form class="card form" method="POST" action="https://formspree.io/f/mayvlqkn">
+    <fieldset>
+      <legend>Lesson Type</legend>
+      <label><input type="checkbox" name="lesson" value="Hitting"> Hitting</label>
+      <label><input type="checkbox" name="lesson" value="Infield"> Infield</label>
+      <label><input type="checkbox" name="lesson" value="Outfield"> Outfield</label>
+      <label><input type="checkbox" name="lesson" value="Pitching"> Pitching</label>
+      <label><input type="checkbox" name="lesson" value="Catching"> Catching</label>
+    </fieldset>
+    <div class="grid-2">
+      <label>Parent/Guardian Full Name
+        <input required name="parent_name" type="text" placeholder="Jane Doe">
+      </label>
+      <label>Parent Email
+        <input required name="parent_email" type="email" placeholder="jane@example.com">
+      </label>
+      <label>Athlete Full Name
+        <input required name="athlete_name" type="text" placeholder="Sam Doe">
+      </label>
+      <label>Athlete Date of Birth
+        <input required name="dob" type="date">
+      </label>
+      <label>Emergency Contact
+        <input required name="emergency_contact" type="tel" placeholder="(555) 987-6543">
+      </label>
+      <label>Notes
+        <textarea name="notes" rows="4" placeholder="Tell us about your goals, positions, experience..."></textarea>
+      </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit Request</button>
+  </form>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h4>Freedom Baseball</h4>
+      <p>Private lessons for hitters, fielders, pitchers & catchers. Train with purpose.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: <a href="mailto:train@freedombaseball.com">train@freedombaseball.com</a><br>
+      Phone: <a href="tel:+15551234567">(555) 123-4567</a></p>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <p><a href="#">Instagram</a> · <a href="#">Facebook</a></p>
+    </div>
+  </div>
+  <div class="container tiny">© <span id="year"></span> Freedom Baseball. All rights reserved.</div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
