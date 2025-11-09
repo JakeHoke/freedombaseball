@@ -27,7 +27,9 @@ async function loadHeader() {
       return;
     }
 
-    const response = await fetch('header.html');
+    // Use relative path that works with GitHub Pages
+    const headerPath = './header.html';
+    const response = await fetch(headerPath);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -56,7 +58,9 @@ async function loadFooter() {
       return;
     }
 
-    const response = await fetch('footer.html');
+    // Use relative path that works with GitHub Pages
+    const footerPath = './footer.html';
+    const response = await fetch(footerPath);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -258,15 +262,18 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Wait for DOM to be ready before loading header and footer
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
-    loadFooter();
+async function initializePage() {
+  try {
+    await Promise.all([loadHeader(), loadFooter()]);
     log('Script initialized successfully');
-  });
+  } catch (error) {
+    log('ERROR during initialization', error);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializePage);
 } else {
   // DOM is already ready
-  loadHeader();
-  loadFooter();
-  log('Script initialized successfully');
+  initializePage();
 }
