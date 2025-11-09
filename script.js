@@ -11,22 +11,88 @@ function log(message, data = null) {
   }
 }
 
+// Load header and footer
+async function loadHeader() {
+  try {
+    const headerPlaceholder = document.getElementById('header-placeholder');
+    if (!headerPlaceholder) {
+      log('Header placeholder not found');
+      return;
+    }
+
+    // Check if we're running from file:// protocol
+    if (window.location.protocol === 'file:') {
+      log('WARNING: Running from file:// protocol. Header/footer loading requires HTTP server.');
+      log('Please use a local server (e.g., python -m http.server or live-server)');
+      return;
+    }
+
+    const response = await fetch('header.html');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const html = await response.text();
+    headerPlaceholder.outerHTML = html;
+    log('Header loaded successfully');
+    // Reinitialize navigation toggle after header loads
+    initNavigation();
+  } catch (error) {
+    log('ERROR: Failed to load header', error);
+    log('Make sure you are running from a web server (not file://)');
+  }
+}
+
+async function loadFooter() {
+  try {
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (!footerPlaceholder) {
+      log('Footer placeholder not found');
+      return;
+    }
+
+    // Check if we're running from file:// protocol
+    if (window.location.protocol === 'file:') {
+      log('WARNING: Running from file:// protocol. Header/footer loading requires HTTP server.');
+      return;
+    }
+
+    const response = await fetch('footer.html');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const html = await response.text();
+    footerPlaceholder.outerHTML = html;
+    log('Footer loaded successfully');
+    // Update year after footer loads
+    updateYear();
+  } catch (error) {
+    log('ERROR: Failed to load footer', error);
+    log('Make sure you are running from a web server (not file://)');
+  }
+}
+
 // Navigation toggle functionality
-const toggle = document.querySelector('.nav-toggle');
-const menu = document.querySelector('.menu');
-if(toggle){
-  toggle.addEventListener('click', ()=>{
-    const open = menu.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    log('Navigation menu toggled', { open });
-  });
+function initNavigation() {
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.querySelector('.menu');
+  if(toggle && !toggle.hasAttribute('data-initialized')){
+    toggle.setAttribute('data-initialized', 'true');
+    toggle.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      log('Navigation menu toggled', { open });
+    });
+    log('Navigation initialized');
+  }
 }
 
 // Year display
-const year = document.getElementById('year');
-if(year){ 
-  year.textContent = new Date().getFullYear();
-  log('Year updated', new Date().getFullYear());
+function updateYear() {
+  const year = document.getElementById('year');
+  if(year){ 
+    year.textContent = new Date().getFullYear();
+    log('Year updated', new Date().getFullYear());
+  }
 }
 
 // Modal functionality
@@ -191,4 +257,16 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-log('Script initialized successfully');
+// Wait for DOM to be ready before loading header and footer
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    loadFooter();
+    log('Script initialized successfully');
+  });
+} else {
+  // DOM is already ready
+  loadHeader();
+  loadFooter();
+  log('Script initialized successfully');
+}
