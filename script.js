@@ -108,7 +108,7 @@ const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
 // Lesson data structure
 const lessonData = {
   hitting: {
-    image: 'assets/hitting.jpg',
+    image: 'assets/Baseball Hitter 2.jpg',
     title: 'Hitting Lessons',
     price: '$50 / 1-hour lesson',
     subtitle: 'What Hitters Gain from Private Lessons',
@@ -121,7 +121,7 @@ const lessonData = {
     ]
   },
   fielding: {
-    image: 'assets/fielding.jpg',
+    image: 'assets/Baseball Infielder 1.jpg',
     title: 'Fielding Lessons',
     price: '$50 / 1-hour lesson',
     subtitle: 'What Infielders Gain from Private Lessons',
@@ -134,7 +134,7 @@ const lessonData = {
     ]
   },
   outfield: {
-    image: 'assets/outfield.jpg',
+    image: 'assets/Baseball Outfielder 1.jpg',
     title: 'Outfielder Lessons',
     price: '$50 / 1-hour lesson',
     subtitle: 'What Outfielders Gain from Private Lessons',
@@ -147,7 +147,7 @@ const lessonData = {
     ]
   },
   pitching: {
-    image: 'assets/pitching.jpg',
+    image: 'assets/Baseball Pitcher 1.jpg',
     title: 'Pitching Lessons',
     price: '$50 / 1-hour lesson',
     subtitle: 'What Pitchers Gain from Private Lessons',
@@ -160,7 +160,7 @@ const lessonData = {
     ]
   },
   catching: {
-    image: 'assets/catching.jpg',
+    image: 'assets/Baseball Catcher Lessons Picture.jpg',
     title: 'Catching Lessons',
     price: '$50 / 1-hour lesson',
     subtitle: 'What Catchers Gain from Private Lessons',
