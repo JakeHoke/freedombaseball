@@ -261,6 +261,18 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Close modal when "Schedule Your Lesson" button is clicked
+document.addEventListener('click', (e) => {
+  // Check if the clicked element is the "Schedule Your Lesson" button inside the modal
+  const scheduleButton = e.target.closest('#lessonModal .btn[href="#request"]');
+  if (scheduleButton && modal?.classList.contains('active')) {
+    log('Schedule lesson button clicked - closing modal');
+    closeModal();
+    // The anchor link will naturally scroll to #request after modal closes
+  }
+});
+
+
 // Wait for DOM to be ready before loading header and footer
 async function initializePage() {
   try {
