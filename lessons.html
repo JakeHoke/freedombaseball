@@ -76,7 +76,17 @@
 
 <section id="request" class="container form-wrap">
   <h2>Lesson Request Form</h2>
-  <form class="card form" method="POST" action="https://formspree.io/f/mayvlqkn">
+  <form class="card form" method="POST" action="https://formsubmit.co/flyfreedombaseball@gmail.com">
+    <!-- Honeypot field for spam prevention -->
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <!-- Redirect to same page with success parameter after submission -->
+    <input type="hidden" name="_next" value="">
+    <!-- Disable FormSubmit's default captcha (optional - remove if you want captcha) -->
+    <input type="hidden" name="_captcha" value="false">
+    <!-- Email subject line -->
+    <input type="hidden" name="_subject" value="New Lesson Request - Freedom Baseball">
+    <!-- Email template for better formatting -->
+    <input type="hidden" name="_template" value="table">
     <fieldset>
       <legend>Lesson Type</legend>
       <label><input type="checkbox" name="lesson" value="Hitting"> Hitting</label>
