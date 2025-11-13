@@ -272,11 +272,77 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Initialize form redirect URL for FormSubmit
+function initFormSubmit() {
+  const form = document.querySelector('form[action*="formsubmit.co"]');
+  if (form) {
+    const nextInput = form.querySelector('input[name="_next"]');
+    if (nextInput) {
+      // Set redirect to current page URL (FormSubmit will append ?email=...)
+      nextInput.value = window.location.href.split('?')[0] + '?submitted=true';
+      log('FormSubmit redirect URL set', nextInput.value);
+    }
+    
+    // Add form submission handler to log all data being submitted
+    form.addEventListener('submit', (e) => {
+      log('Form submission started');
+      const formData = new FormData(form);
+      const submittedData = {};
+      
+      // Collect all form data including checkboxes
+      for (const [key, value] of formData.entries()) {
+        // Handle multiple values for checkboxes (same name)
+        if (submittedData[key]) {
+          if (Array.isArray(submittedData[key])) {
+            submittedData[key].push(value);
+          } else {
+            submittedData[key] = [submittedData[key], value];
+          }
+        } else {
+          submittedData[key] = value;
+        }
+      }
+      
+      // Remove hidden FormSubmit fields from log for clarity
+      const displayData = { ...submittedData };
+      delete displayData._honey;
+      delete displayData._next;
+      delete displayData._captcha;
+      delete displayData._subject;
+      delete displayData._template;
+      
+      log('Form data being submitted:', displayData);
+      log('All form fields captured - submission proceeding');
+    });
+    
+    // Check if form was just submitted (success redirect)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submitted') === 'true') {
+      log('Form submission detected - showing success message');
+      // Scroll to form section
+      const formSection = document.getElementById('request');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Optionally show a success message (you can customize this)
+        const formElement = formSection.querySelector('form');
+        if (formElement) {
+          const successMsg = document.createElement('div');
+          successMsg.className = 'success-message';
+          successMsg.style.cssText = 'background: #4caf50; color: white; padding: 1rem; border-radius: 4px; margin-bottom: 1rem; text-align: center;';
+          successMsg.textContent = '✓ Thank you! Your lesson request has been submitted successfully. We\'ll be in touch soon!';
+          formElement.insertBefore(successMsg, formElement.firstChild);
+          log('Success message displayed');
+        }
+      }
+    }
+  }
+}
 
 // Wait for DOM to be ready before loading header and footer
 async function initializePage() {
   try {
     await Promise.all([loadHeader(), loadFooter()]);
+    initFormSubmit();
     log('Script initialized successfully');
   } catch (error) {
     log('ERROR during initialization', error);
