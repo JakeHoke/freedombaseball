@@ -110,7 +110,7 @@ const lessonData = {
   hitting: {
     image: 'assets/Baseball Hitter 2.jpg',
     title: 'Hitting Lessons',
-    price: '$50 / 1-hour lesson',
+    price: '...',
     subtitle: 'What Hitters Gain from Private Lessons',
     items: [
       'Refined Swing Mechanics – consistent, powerful contact.',
@@ -123,7 +123,7 @@ const lessonData = {
   fielding: {
     image: 'assets/Baseball Infielder 1.jpg',
     title: 'Fielding Lessons',
-    price: '$50 / 1-hour lesson',
+    price: '...',
     subtitle: 'What Infielders Gain from Private Lessons',
     items: [
       'Precise Footwork – quick, efficient movements to the ball.',
@@ -136,7 +136,7 @@ const lessonData = {
   outfield: {
     image: 'assets/Baseball Outfielder 1.jpg',
     title: 'Outfielder Lessons',
-    price: '$50 / 1-hour lesson',
+    price: '...',
     subtitle: 'What Outfielders Gain from Private Lessons',
     items: [
       'Better Reads & Routes – tracking fly balls and line drives efficiently.',
@@ -149,7 +149,7 @@ const lessonData = {
   pitching: {
     image: 'assets/Baseball Pitcher 1.jpg',
     title: 'Pitching Lessons',
-    price: '$50 / 1-hour lesson',
+    price: '...',
     subtitle: 'What Pitchers Gain from Private Lessons',
     items: [
       'Refined Delivery Mechanics – consistent, repeatable motion.',
@@ -162,7 +162,7 @@ const lessonData = {
   catching: {
     image: 'assets/Baseball Catcher Lessons Picture.jpg',
     title: 'Catching Lessons',
-    price: '$50 / 1-hour lesson',
+    price: '...',
     subtitle: 'What Catchers Gain from Private Lessons',
     items: [
       'Receiving Skills – framing pitches and presenting strikes.',
